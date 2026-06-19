@@ -17,8 +17,7 @@ public class Main {
 			System.out.println();
 			System.out.println("(Ingresá -1 para salir)");
 			
-			System.out.print("\n>> ");
-			opcion = scanner.nextInt();
+			opcion = pedirOpcion();
 			
 			switch (opcion) {
 				case -1:
@@ -36,6 +35,9 @@ public class Main {
 					// Ver informes
 					menuInformes();
 					break;
+				default:
+			        System.out.println("\n[!] Opción inválida. Intentá de nuevo.\n");
+			        break;
 			}
 		}
 		
@@ -54,8 +56,7 @@ public class Main {
 			System.out.println();
 			System.out.println("(Ingresá -1 para ir atrás)");
 			
-			System.out.print("\n>> ");
-			opcion = scanner.nextInt();
+			opcion = pedirOpcion();
 			
 			switch (opcion) {
 				case -1:
@@ -70,6 +71,9 @@ public class Main {
 				case 3:
 					System.out.println("\n------ ELIMINAR RUTAS ------\n");
 					break;
+				default:
+					System.out.println("\n[!] Opción inválida. Intentá de nuevo.\n");
+			        break;
 			}
 		}
 		
@@ -88,8 +92,7 @@ public class Main {
 			System.out.println();
 			System.out.println("(Ingresá -1 para ir atrás)");
 			
-			System.out.print("\n>> ");
-			opcion = scanner.nextInt();
+			opcion = pedirOpcion();
 			
 			switch (opcion) {
 				case -1:
@@ -104,6 +107,9 @@ public class Main {
 				case 3:
 					System.out.println("\n------ ELIMINAR CLIENTES ------");
 					break;
+				default:
+					System.out.println("\n[!] Opción inválida. Intentá de nuevo.\n");
+			        break;
 			}
 		}
 		
@@ -122,8 +128,7 @@ public class Main {
 			System.out.println();
 			System.out.println("(Ingresá -1 para ir atrás)");
 			
-			System.out.print("\n>> ");
-			opcion = scanner.nextInt();
+			opcion = pedirOpcion(); 
 			
 			switch (opcion) {
 				case -1:
@@ -138,9 +143,26 @@ public class Main {
 				case 3:
 					System.out.println("\n------ ESTADÍSTICAS SEMANALES ------");
 					break;
+				default:
+					System.out.println("\n[!] Opción inválida. Intentá de nuevo.\n");
+			        break;
 			}
 		}
 		
 		System.out.println("Volviendo atrás...");
+	}
+	
+	private static int pedirOpcion() {
+	    while (true) {
+	        try {
+	            System.out.print("\n>> ");
+	            int opcion = scanner.nextInt();
+	            scanner.nextLine();
+	            return opcion;
+	        } catch (Exception e) {
+	            System.out.println("\n[!] Error: Por favor ingresá un número válido.");
+	            scanner.nextLine();
+	        }
+	    }
 	}
 }
