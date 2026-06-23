@@ -53,5 +53,12 @@ public class Cliente {
 	public void setDia(Dia dia) {
 		this.dia = dia;
 	}
+	
+	@Override
+	public String toString() {
+		return "DNI: " + dni + " | Nombre: " + nombre
+				+ " | Coordenadas: (" + x + ", " + y + ")"
+				+ " | Dia: " + dia;
+	}
 }
 

@@ -1,17 +1,19 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import clases.Cliente;
-import clases.ClientesPrueba;
 import clases.Dia;
+import clases.GestorClientes;
 import clases.GestorRutas;
 
 public class Main {
 	static Scanner scanner = new Scanner(System.in);
-	static List<Cliente> clientes = ClientesPrueba.generar(); // TODO: reemplazar por el modulo real de clientes
+	static List<Cliente> clientes = new ArrayList<>();
 	static GestorRutas gestorRutas = new GestorRutas(clientes);
+	static GestorClientes gestorClientes = new GestorClientes(clientes);
 
 	public static void main(String[] args) {
 		int opcion = 0;
@@ -149,12 +151,16 @@ public class Main {
 					break;
 				case 1:
 					System.out.println("\n------ CREAR CLIENTES ------");
+					crearCliente();
+					
 					break;
 				case 2:
 					System.out.println("\n------ MODIFICAR CLIENTES ------");
+					modificarCliente();
 					break;
 				case 3:
 					System.out.println("\n------ ELIMINAR CLIENTES ------");
+					eliminarCliente();
 					break;
 				default:
 					System.out.println("\n[!] Opción inválida. Intentá de nuevo.\n");
@@ -164,7 +170,105 @@ public class Main {
 		
 		System.out.println("Volviendo atrás...");
 	}
+	private static void crearCliente() {
+		int dni = pedirEntero("\nIngresá el DNI del cliente:");
+
+		if (gestorClientes.buscarCliente(dni) != null) {
+			System.out.println("\n[!] Ya existe un cliente cargado con ese DNI.");
+			return;
+		}
+
+		String nombre = pedirTexto("Ingresá el nombre del cliente:");
+		int x = pedirEntero("Ingresá la coordenada X:");
+		int y = pedirEntero("Ingresá la coordenada Y:");
+
+		Dia dia = pedirDia();
+		if (dia == null) {
+			System.out.println("\n[!] Creación cancelada.");
+			return;
+		}
+
+		Cliente cliente = new Cliente(dni, nombre, x, y, dia);
+		gestorClientes.crearCliente(cliente);
+
+		System.out.println("\nCliente creado con éxito:");
+		System.out.println(cliente);
+	}
 	
+	private static void modificarCliente() {
+		if (gestorClientes.getClientes().isEmpty()) {
+			System.out.println("\n[!] No hay clientes cargados todavía.");
+			return;
+		}
+
+		listarClientes();
+
+		int dni = pedirEntero("\nIngresá el DNI del cliente a modificar (-1 para cancelar):");
+		if (dni == -1) {
+			return;
+		}
+
+		Cliente actual = gestorClientes.buscarCliente(dni);
+		if (actual == null) {
+			System.out.println("\n[!] No existe un cliente con ese DNI.");
+			return;
+		}
+
+		System.out.println("\nDatos actuales -> " + actual);
+
+		String nombre = pedirTexto("Nuevo nombre:");
+		int x = pedirEntero("Nueva coordenada X:");
+		int y = pedirEntero("Nueva coordenada Y:");
+
+		Dia dia = pedirDia();
+		if (dia == null) {
+			System.out.println("\n[!] Modificación cancelada.");
+			return;
+		}
+
+		gestorClientes.modificarCliente(dni, nombre, x, y, dia);
+		System.out.println("\nCliente modificado con éxito:");
+		System.out.println(gestorClientes.buscarCliente(dni));
+	}
+	
+	private static void eliminarCliente() {
+		if (gestorClientes.getClientes().isEmpty()) {
+			System.out.println("\n[!] No hay clientes cargados todavía.");
+			return;
+		}
+
+		listarClientes();
+
+		int dni = pedirEntero("\nIngresá el DNI del cliente a eliminar (-1 para cancelar):");
+		if (dni == -1) {
+			return;
+		}
+
+		boolean eliminado = gestorClientes.eliminarCliente(dni);
+		if (eliminado) {
+			System.out.println("\nCliente eliminado con éxito.");
+		} else {
+			System.out.println("\n[!] No existe un cliente con ese DNI.");
+		}
+	}
+	
+	private static void listarClientes() {
+		System.out.println("\nClientes cargados:");
+		for (Cliente c : gestorClientes.getClientes()) {
+			System.out.println("- " + c);
+		}
+	}
+
+	private static int pedirEntero(String mensaje) {
+		System.out.println(mensaje);
+		return pedirOpcion();
+	}
+
+	private static String pedirTexto(String mensaje) {
+		System.out.println(mensaje);
+		System.out.print("\n>> ");
+		return scanner.nextLine();
+	}
 	public static void menuInformes() {
 		int opcion = 0;
 		
