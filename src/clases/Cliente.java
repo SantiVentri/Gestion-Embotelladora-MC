@@ -5,14 +5,17 @@ public class Cliente {
 	private String nombre;
 	private int x;
 	private int y;
+	private Dia dia;
 	
-	public Cliente(int dni, String nombre, int x, int y) {
+	public Cliente(int dni, String nombre, int x, int y, Dia dia) {
 		this.dni = dni;
 		this.nombre = nombre;
 
 		// Coordenadas
 		this.x = x;
 		this.y = y;
+
+		this.dia = dia;
 	}
 	
 	public int getDni() {
@@ -42,4 +45,13 @@ public class Cliente {
 	public void setY(int y) {
 		this.y = y;
 	}
+
+	public Dia getDia() {
+		return dia;
+	}
+
+	public void setDia(Dia dia) {
+		this.dia = dia;
+	}
 }
+

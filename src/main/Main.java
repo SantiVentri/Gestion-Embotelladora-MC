@@ -1,9 +1,17 @@
 package main;
 
+import java.util.List;
 import java.util.Scanner;
+
+import clases.Cliente;
+import clases.ClientesPrueba;
+import clases.Dia;
+import clases.GestorRutas;
 
 public class Main {
 	static Scanner scanner = new Scanner(System.in);
+	static List<Cliente> clientes = ClientesPrueba.generar(); // TODO: reemplazar por el modulo real de clientes
+	static GestorRutas gestorRutas = new GestorRutas(clientes);
 
 	public static void main(String[] args) {
 		int opcion = 0;
@@ -64,12 +72,15 @@ public class Main {
 					break;
 				case 1:
 					System.out.println("\n------ CREAR RUTAS ------\n");
+					crearRuta();
 					break;
 				case 2:
 					System.out.println("\n------ MODIFICAR RUTAS ------\n");
+					System.out.println("[!] Funcionalidad aun no disponible.");
 					break;
 				case 3:
 					System.out.println("\n------ ELIMINAR RUTAS ------\n");
+					eliminarRuta();
 					break;
 				default:
 					System.out.println("\n[!] Opción inválida. Intentá de nuevo.\n");
@@ -78,6 +89,44 @@ public class Main {
 		}
 		
 		System.out.println("Volviendo atrás...");
+	}
+
+	private static void crearRuta() {
+		Dia dia = pedirDia();
+		if (dia == null) {
+			return;
+		}
+		String resultado = gestorRutas.crearRuta(dia);
+		System.out.println("\n" + resultado);
+	}
+
+	private static void eliminarRuta() {
+		Dia dia = pedirDia();
+		if (dia == null) {
+			return;
+		}
+		String resultado = gestorRutas.eliminarRuta(dia);
+		System.out.println("\n" + resultado);
+	}
+
+	private static Dia pedirDia() {
+		Dia[] dias = Dia.values();
+		System.out.println("Elegí el dia:");
+		for (int i = 0; i < dias.length; i++) {
+			System.out.println((i + 1) + ". " + dias[i]);
+		}
+		System.out.println();
+		System.out.println("(Ingresá -1 para cancelar)");
+
+		int opcion = pedirOpcion();
+		if (opcion == -1) {
+			return null;
+		}
+		if (opcion < 1 || opcion > dias.length) {
+			System.out.println("\n[!] Opción inválida.");
+			return null;
+		}
+		return dias[opcion - 1];
 	}
 	
 	public static void menuClientes() {
