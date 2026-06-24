@@ -2,7 +2,7 @@ package clases;
 
 import java.util.Scanner;
 
-public class Informerutas {
+public class Informes {
     static final double PRECIO_NAFTA_POR_KM = 5000.0; // pesos por km
     static final double PRECIO_POR_UNIDAD   = 7000.0; // ganancia por cliente visitado
 	 
