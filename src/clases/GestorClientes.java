@@ -49,7 +49,7 @@ public class GestorClientes {
     }
 
     public boolean modificarCliente(int dni, String nombre,
-                                    int x, int y, Dia dia) {
+                                    int x, int y, Dia dia, int cantidadProducto) {
 
         Cliente c = buscarCliente(dni);
 
@@ -61,6 +61,7 @@ public class GestorClientes {
         c.setX(x);
         c.setY(y);
         c.setDia(dia);
+        c.setCantidadProducto(cantidadProducto);
 
         return true;
     }
