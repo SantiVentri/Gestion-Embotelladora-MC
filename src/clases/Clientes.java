@@ -17,6 +17,7 @@ public class Clientes {
 		String nombre = pedirTexto("Ingresá el nombre del cliente:");
 		int x = pedirEntero("Ingresá la coordenada X:");
 		int y = pedirEntero("Ingresá la coordenada Y:");
+		int cantidadProducto = pedirEntero("Ingresá la cantidad de producto que compra:");
 
 		Dia dia = pedirDia();
 		if (dia == null) {
@@ -24,7 +25,7 @@ public class Clientes {
 			return;
 		}
 
-		Cliente cliente = new Cliente(dni, nombre, x, y, dia);
+		Cliente cliente = new Cliente(dni, nombre, x, y, dia, cantidadProducto);
 		gestorClientes.crearCliente(cliente);
 
 		System.out.println("\nCliente creado con éxito:");
@@ -55,14 +56,14 @@ public class Clientes {
 		String nombre = pedirTexto("Nuevo nombre:");
 		int x = pedirEntero("Nueva coordenada X:");
 		int y = pedirEntero("Nueva coordenada Y:");
-
+		int cantidadProducto = pedirEntero("Nueva cantidad de producto:");
 		Dia dia = pedirDia();
 		if (dia == null) {
 			System.out.println("\n[!] Modificación cancelada.");
 			return;
 		}
 
-		gestorClientes.modificarCliente(dni, nombre, x, y, dia);
+		gestorClientes.modificarCliente(dni, nombre, x, y, dia, cantidadProducto);
 		System.out.println("\nCliente modificado con éxito:");
 		System.out.println(gestorClientes.buscarCliente(dni));
 	}

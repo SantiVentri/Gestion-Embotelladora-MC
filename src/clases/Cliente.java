@@ -6,8 +6,9 @@ public class Cliente {
 	private int x;
 	private int y;
 	private Dia dia;
+	private int cantidadProducto;
 	
-	public Cliente(int dni, String nombre, int x, int y, Dia dia) {
+	public Cliente(int dni, String nombre, int x, int y, Dia dia, int cantidadProducto) {
 		this.dni = dni;
 		this.nombre = nombre;
 
@@ -16,6 +17,8 @@ public class Cliente {
 		this.y = y;
 
 		this.dia = dia;
+		this.cantidadProducto = cantidadProducto;
+		
 	}
 	
 	public int getDni() {
@@ -54,11 +57,18 @@ public class Cliente {
 		this.dia = dia;
 	}
 	
+	public int getCantidadProducto() {
+		return cantidadProducto;
+	}
+	public void setCantidadProducto(int cantidadProducto) {
+		this.cantidadProducto = cantidadProducto;
+	}
+	
 	@Override
 	public String toString() {
 		return "DNI: " + dni + " | Nombre: " + nombre
 				+ " | Coordenadas: (" + x + ", " + y + ")"
-				+ " | Dia: " + dia;
+				+ " | Dia: " + dia
+				+ " | Cantidad de producto: " + cantidadProducto;
 	}
 }
-
