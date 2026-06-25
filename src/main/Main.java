@@ -2,15 +2,17 @@ package main;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import clases.Cliente;
 import clases.Dia;
 import clases.GestorClientes;
 import clases.GestorRutas;
 
+import static utils.Utils.pedirOpcion;
+import static utils.Utils.pedirTexto;
+import static utils.Utils.pedirEntero;
+
 public class Main {
-	static Scanner scanner = new Scanner(System.in);
 	static List<Cliente> clientes = new ArrayList<>();
 	static GestorRutas gestorRutas = new GestorRutas(clientes);
 	static GestorClientes gestorClientes = new GestorClientes(clientes);
@@ -111,25 +113,6 @@ public class Main {
 		System.out.println("\n" + resultado);
 	}
 
-	private static Dia pedirDia() {
-		Dia[] dias = Dia.values();
-		System.out.println("Elegí el dia:");
-		for (int i = 0; i < dias.length; i++) {
-			System.out.println((i + 1) + ". " + dias[i]);
-		}
-		System.out.println();
-		System.out.println("(Ingresá -1 para cancelar)");
-
-		int opcion = pedirOpcion();
-		if (opcion == -1) {
-			return null;
-		}
-		if (opcion < 1 || opcion > dias.length) {
-			System.out.println("\n[!] Opción inválida.");
-			return null;
-		}
-		return dias[opcion - 1];
-	}
 	
 	public static void menuClientes() {
 		int opcion = 0;
@@ -257,18 +240,8 @@ public class Main {
 		for (Cliente c : gestorClientes.getClientes()) {
 			System.out.println("- " + c);
 		}
-	}
-
-	private static int pedirEntero(String mensaje) {
-		System.out.println(mensaje);
-		return pedirOpcion();
-	}
-
-	private static String pedirTexto(String mensaje) {
-		System.out.println(mensaje);
-		System.out.print("\n>> ");
-		return scanner.nextLine();
-	}
+	}	
+	
 	public static void menuInformes() {
 		int opcion = 0;
 		
@@ -303,19 +276,5 @@ public class Main {
 		}
 		
 		System.out.println("Volviendo atrás...");
-	}
-	
-	private static int pedirOpcion() {
-	    while (true) {
-	        try {
-	            System.out.print("\n>> ");
-	            int opcion = scanner.nextInt();
-	            scanner.nextLine();
-	            return opcion;
-	        } catch (Exception e) {
-	            System.out.println("\n[!] Error: Por favor ingresá un número válido.");
-	            scanner.nextLine();
-	        }
-	    }
 	}
 }
