@@ -34,18 +34,21 @@ public class Informes {
             return;
         }
 	 
+        int numeroCamion = 1;
         int totalClientes = 0;
-        int numeroCamion  = 1;
+        int totalProductos = 0;
 	 
         for (Camion camion : ruta.getCamiones()) {
             System.out.println("\n  --- Camion " + numeroCamion + " ---");
             System.out.println("  Recorrido: " + camion);
             System.out.println("  Clientes:");
+            totalClientes = camion.getClientes().size();
             for (Cliente c : camion.getClientes()) {
                 System.out.println("    - " + c);
-                totalClientes++;
+                totalProductos += c.getCantidadProducto();
             }
-            double kmCamion    = camion.getDistanciaTotal();
+            
+            double kmCamion = camion.getDistanciaTotal();
             double costoCamion = kmCamion * PRECIO_NAFTA_POR_KM;
             System.out.printf("  Distancia:     %.2f km%n", kmCamion);
             System.out.printf("  Costo nafta:   $%.2f%n", costoCamion);
@@ -54,7 +57,7 @@ public class Informes {
 	 
         double kmTotal = ruta.getDistanciaTotal();
         double costoNafta = kmTotal * PRECIO_NAFTA_POR_KM;
-        double ingresoTotal = totalClientes * PRECIO_POR_UNIDAD;
+        double ingresoTotal = totalProductos * PRECIO_POR_UNIDAD;
         double ganancia = ingresoTotal - costoNafta;
 	 
         System.out.println("\n  ====================================");
