@@ -1,12 +1,12 @@
 package clases;
 
-import java.util.Scanner;
+import static utils.Utils.pedirOpcion;
 
 public class Informes {
     static final double PRECIO_NAFTA_POR_KM = 5000.0; // pesos por km
     static final double PRECIO_POR_UNIDAD   = 7000.0; // ganancia por cliente visitado
 	 
-    public static void mostrarInformeRutas(GestorRutas gestorRutas, Scanner scanner) {
+    public static void mostrarInformeRutas(GestorRutas gestorRutas) {
         System.out.println("\n------ INFORME DE RUTAS POR DIA ------\n");
         System.out.println("Selecciona un dia:");
 	 
@@ -16,7 +16,7 @@ public class Informes {
         }
         System.out.print("\n>> ");
  
-        int opcion = scanner.nextInt();
+        int opcion = pedirOpcion();
  
         if (opcion < 1 || opcion > dias.length) {
             System.out.println("Opcion invalida.");
