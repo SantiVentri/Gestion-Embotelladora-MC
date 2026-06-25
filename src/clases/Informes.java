@@ -1,9 +1,11 @@
 package clases;
 
+import java.util.List;
+
 import static utils.Utils.pedirOpcion;
 
 public class Informes {
-    static final double PRECIO_NAFTA_POR_KM = 5000.0; // pesos por km
+    static final double PRECIO_NAFTA_POR_KM = 500.0; // pesos por km
     static final double PRECIO_POR_UNIDAD   = 7000.0; // ganancia por cliente visitado
 	 
     public static void mostrarInformeRutas(GestorRutas gestorRutas) {
@@ -71,7 +73,51 @@ public class Informes {
     }
     
     public static void mostrarInformeClientes(GestorClientes gestorClientes) {
-    	
+
+        List<Cliente> clientes = gestorClientes.getClientes();
+
+        if (clientes.isEmpty()) {
+            System.out.println("  No hay clientes cargados todavia.");
+            return;
+        }
+
+        String[] titulos = {"Nombre", "DNI", "Cant. Pedida", "Cords (x, y)", "Dia asignado"};
+        int[] anchos = {20, 10, 14, 14, 14};
+
+        imprimirBorde(anchos);
+        imprimirFila(titulos, anchos);
+        imprimirBorde(anchos);
+
+        for (Cliente c : clientes) {
+            String coords = "(" + c.getX() + ", " + c.getY() + ")";
+            String[] fila = {
+                    c.getNombre(),
+                    String.valueOf(c.getDni()),
+                    String.valueOf(c.getCantidadProducto()),
+                    coords,
+                    c.getDia().toString()
+            };
+            imprimirFila(fila, anchos);
+        }
+
+        imprimirBorde(anchos);
+        System.out.println("\n  Total de clientes: " + clientes.size());
+    }
+
+    private static void imprimirBorde(int[] anchos) {
+        StringBuilder sb = new StringBuilder("  +");
+        for (int ancho : anchos) {
+            sb.append("-".repeat(ancho + 2)).append("+");
+        }
+        System.out.println(sb);
+    }
+
+    private static void imprimirFila(String[] valores, int[] anchos) {
+        StringBuilder sb = new StringBuilder("  |");
+        for (int i = 0; i < valores.length; i++) {
+            sb.append(" ").append(String.format("%-" + anchos[i] + "s", valores[i])).append(" |");
+        }
+        System.out.println(sb);
     }
     
     public static void mostrarEstadisticasSemanales(GestorRutas gestorRutas, GestorClientes gestorClientes) {
