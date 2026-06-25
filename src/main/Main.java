@@ -60,8 +60,7 @@ public class Main {
 			System.out.println();
 			System.out.println("------ ADMINISTRAR RUTAS ------\n");
 			System.out.println("1. Crear rutas");
-			System.out.println("2. Modificar rutas");
-			System.out.println("3. Eliminar rutas");
+			System.out.println("2. Eliminar rutas");
 			System.out.println();
 			System.out.println("(Ingresá -1 para ir atrás)");
 			
@@ -76,10 +75,6 @@ public class Main {
 					Rutas.crearRuta(gestorRutas);
 					break;
 				case 2:
-					System.out.println("\n------ MODIFICAR RUTAS ------\n");
-					System.out.println("[!] Funcionalidad aun no disponible.");
-					break;
-				case 3:
 					System.out.println("\n------ ELIMINAR RUTAS ------\n");
 					Rutas.eliminarRuta(gestorRutas);
 					break;
@@ -101,6 +96,7 @@ public class Main {
 			System.out.println("1. Crear clientes");
 			System.out.println("2. Modificar clientes");
 			System.out.println("3. Eliminar clientes");
+			System.out.println("4. Listar clientes");
 			System.out.println();
 			System.out.println("(Ingresá -1 para ir atrás)");
 			
@@ -122,6 +118,10 @@ public class Main {
 				case 3:
 					System.out.println("\n------ ELIMINAR CLIENTES ------");
 					Clientes.eliminarCliente(gestorClientes);
+					break;
+				case 4:
+					System.out.println("\n------ LISTAR CLIENTES ------");
+					Clientes.listarClientes(gestorClientes);
 					break;
 				default:
 					System.out.println("\n[!] Opción inválida. Intentá de nuevo.\n");
