@@ -13,6 +13,8 @@ public class Main {
 	static GestorClientes gestorClientes = new GestorClientes(clientes);
 
 	public static void main(String[] args) {
+		gestorClientes.cargarClientes();
+		
 		int opcion = 0;
 		
 		while (opcion != -1) {
