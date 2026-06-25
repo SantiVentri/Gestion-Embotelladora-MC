@@ -66,4 +66,12 @@ public class Informes {
         System.out.printf("  GANANCIA DEL DIA:   $%.2f%n", ganancia);
         System.out.println("======================================\n");
     }
+    
+    public static void mostrarInformeClientes(GestorClientes gestorClientes) {
+    	
+    }
+    
+    public static void mostrarEstadisticasSemanales(GestorRutas gestorRutas, GestorClientes gestorClientes) {
+    	
+    }
 }

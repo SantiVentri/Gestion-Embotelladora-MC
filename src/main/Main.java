@@ -154,9 +154,11 @@ public class Main {
 					break;
 				case 2:
 					System.out.println("\n------ INFORME CLIENTES ------");
+					Informes.mostrarInformeClientes(gestorClientes);
 					break;
 				case 3:
 					System.out.println("\n------ ESTADÍSTICAS SEMANALES ------");
+					Informes.mostrarEstadisticasSemanales(gestorRutas, gestorClientes);
 					break;
 				default:
 					System.out.println("\n[!] Opción inválida. Intentá de nuevo.\n");
