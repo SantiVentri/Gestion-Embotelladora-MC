@@ -66,9 +66,6 @@ public class Cliente {
 	
 	@Override
 	public String toString() {
-		return "DNI: " + dni + " | Nombre: " + nombre
-				+ " | Coordenadas: (" + x + ", " + y + ")"
-				+ " | Dia: " + dia
-				+ " | Cantidad de producto: " + cantidadProducto;
+	    return String.format("DNI: %-10d | Nombre: %-20s | Coord: (%3d, %3d) | Dia: %-10s | Cant: %3d", dni,  nombre, x, y, dia, cantidadProducto);
 	}
 }
