@@ -52,8 +52,6 @@ public class Informes {
             
             double kmCamion = camion.getDistanciaTotal();
             double costoCamion = kmCamion * PRECIO_NAFTA_POR_KM;
-            System.out.printf("  Distancia:     %.2f km%n", kmCamion);
-            System.out.printf("  Costo nafta:   $%.2f%n", costoCamion);
             numeroCamion++;
         }
 	 
