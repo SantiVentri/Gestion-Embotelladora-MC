@@ -1,7 +1,5 @@
 package utils;
 
-import static utils.Utils.pedirOpcion;
-
 import java.util.Scanner;
 
 import clases.Dia;
