@@ -67,7 +67,7 @@ public class GestorClientes {
     	String[] nombres = {"Juan", "Maria", "Pedro", "Ana", "Luis", "Elena", "Carlos", "Sofia"};
     	String[] apellidos = {"Perez", "Gomez", "Rodriguez", "Fernandez", "Lopez", "Diaz", "Torres", "Ruiz"};
     	
-    	for (int i = 0; i <= 30; i++) {
+    	for (int i = 0; i < 30; i++) {
     		
     		// Crear un DNI unico entre 30.000.000 y 40.000.000
     		int dni;
