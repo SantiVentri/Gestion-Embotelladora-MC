@@ -41,7 +41,7 @@ public class Main {
 					menuClientes();
 					break;
 				case 3:
-					// Ver informes
+					// Ver informes 
 					menuInformes();
 					break;
 				default:
