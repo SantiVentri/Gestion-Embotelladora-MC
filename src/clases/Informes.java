@@ -118,6 +118,32 @@ public class Informes {
     }
     
     public static void mostrarEstadisticasSemanales(GestorRutas gestorRutas, GestorClientes gestorClientes) {
-    	
+
+        double kmTotales = 0;
+        int unidadesTotales = 0;
+
+        for (Ruta ruta : gestorRutas.getTodasLasRutas()) {
+
+            kmTotales += ruta.getDistanciaTotal();
+
+            for (Camion camion : ruta.getCamiones()) {
+                for (Cliente cliente : camion.getClientes()) {
+                    unidadesTotales += cliente.getCantidadProducto();
+                }
+            }
+        }
+
+        double costoNafta = kmTotales * PRECIO_NAFTA_POR_KM;
+        int clientesTotales = gestorClientes.getClientes().size();
+        double ingresoTotal = unidadesTotales * PRECIO_POR_UNIDAD;
+        double gananciaTotal = ingresoTotal - costoNafta;
+
+        System.out.println("\n=========== ESTADÍSTICAS SEMANALES ===========");
+        System.out.printf("KM recorridos en total: %.2f km%n", kmTotales);
+        System.out.printf("Costo total de nafta: $%.2f%n", costoNafta);
+        System.out.printf("Cantidad total de clientes: %d%n", clientesTotales);
+        System.out.printf("Cantidad total de unidades pedidas: %d%n", unidadesTotales);
+        System.out.printf("Ganancia total de la semana: $%.2f%n", gananciaTotal);
+        System.out.println("==============================================");
     }
 }
