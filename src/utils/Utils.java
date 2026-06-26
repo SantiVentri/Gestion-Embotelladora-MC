@@ -51,4 +51,34 @@ public class Utils {
 		}
 		return dias[opcion - 1];
 	}
+	
+	public static int pedirDni() {
+	    while (true) {
+	        int dni = pedirEntero("\nIngresá el DNI del cliente (30M - 50M) o -1 para cancelar:");
+
+	        if (dni == -1) return -1; // Opción de salida
+
+	        // Validaciones
+	        if (String.valueOf(dni).length() == 8 && dni >= 30000000 && dni <= 50000000) {
+	            return dni;
+	        } else {
+	            System.out.println("[!] DNI inválido. Debe tener 8 dígitos y estar entre 30M y 50M.");
+	        }
+	    }
+	}
+	
+	public static int pedirCantidad() {
+	    while (true) {
+	        int cantidad = pedirEntero("\nIngresá la cantidad de productos del cliente (1 a 10) o -1 para cancelar:");
+
+	        if (cantidad == -1) return -1; // Opción de salida
+
+	        // Validaciones
+	        if (cantidad >= 1 && cantidad <= 10) {
+	            return cantidad;
+	        } else {
+	            System.out.println("[!] Cantidad inválida. Debe estar entre 1 y 10");
+	        }
+	    }
+	}
 }

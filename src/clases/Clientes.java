@@ -3,11 +3,16 @@ package clases;
 import static utils.Utils.pedirDia;
 import static utils.Utils.pedirEntero;
 import static utils.Utils.pedirTexto;
+import static utils.Utils.pedirDni;
+import static utils.Utils.pedirCantidad;
 
 public class Clientes {
 	
 	public static void crearCliente(GestorClientes gestorClientes) {
-		int dni = pedirEntero("\nIngresá el DNI del cliente:");
+		int dni = pedirDni();
+        if (dni == -1) {
+            return;
+        }
 
 		if (gestorClientes.buscarCliente(dni) != null) {
 			System.out.println("\n[!] Ya existe un cliente cargado con ese DNI.");
@@ -40,10 +45,10 @@ public class Clientes {
 
 		listarClientes(gestorClientes);
 
-		int dni = pedirEntero("\nIngresá el DNI del cliente a modificar (-1 para cancelar):");
-		if (dni == -1) {
-			return;
-		}
+        int dni = pedirDni();
+        if (dni == -1) {
+            return;
+        }
 
 		Cliente actual = gestorClientes.buscarCliente(dni);
 		if (actual == null) {
@@ -56,7 +61,7 @@ public class Clientes {
 		String nombre = pedirTexto("Nuevo nombre:");
 		int x = pedirEntero("Nueva coordenada X:");
 		int y = pedirEntero("Nueva coordenada Y:");
-		int cantidadProducto = pedirEntero("Nueva cantidad de producto:");
+		int cantidadProducto = pedirCantidad();
 		Dia dia = pedirDia();
 		if (dia == null) {
 			System.out.println("\n[!] Modificación cancelada.");
@@ -76,7 +81,7 @@ public class Clientes {
 
 		listarClientes(gestorClientes);
 
-		int dni = pedirEntero("\nIngresá el DNI del cliente a eliminar (-1 para cancelar):");
+		int dni = pedirDni();
 		if (dni == -1) {
 			return;
 		}
