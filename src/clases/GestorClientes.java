@@ -10,12 +10,6 @@ public class GestorClientes {
         this.clientes = clientes;
     }
 
-    /**
-     * Crea un cliente nuevo, siempre y cuando no exista ya
-     * otro cliente cargado con el mismo DNI.
-     *
-     * @return true si se creo con exito, false si ya existia ese DNI.
-     */
     public boolean crearCliente(Cliente cliente) {
         if (buscarCliente(cliente.getDni()) != null) {
             return false;
